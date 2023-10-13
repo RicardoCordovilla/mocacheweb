@@ -24,12 +24,12 @@ const ChartView = ({ data, timeRange, screen, xaxis, line_dataKey }) => {
   }, []);
   return (
     <AreaChart
-      width={windowSize[0] - 50}
+      width={windowSize[0] < 500 ? windowSize[0] - 50 : 500}
       height={250}
       data={data}
       margin={{
         // top: 10,
-        right: 30,
+        right: 40,
         left: 0,
         bottom: 0
       }}

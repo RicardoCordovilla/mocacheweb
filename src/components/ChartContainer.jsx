@@ -40,18 +40,23 @@ const ChartContainer = ({ station, sensor, setListData }) => {
         let fromTime
         switch (e) {
             case '1H':
-                setFrom(nowDate())
-                setTo(nowDate())
-                setTimeRange(fromTime + ':00' + '-' + toTime + ':00')
+                // setFrom(nowDate())
+                // setTo(nowDate())
+                toTime = (nowTime().split(':')[0]) + ':' + (nowTime().split(':')[1])
+                fromTime = digits(nowTime().split(':')[0] - 1) + ':' + digits(nowTime().split(':')[1])  // 1 hour before
+                console.log(fromTime, toTime)
+                setFrom('2023-10-09')
+                setTo('2023-10-09')
+                setTimeRange(fromTime + '-' + toTime)
                 break;
             case '1D':
                 toTime = '23:59'
                 fromTime = '00:00'
-                // toTime = nowTime().split(':')[0] + ':' + nowTime().split(':')[1]
-                // fromTime = (nowTime().split(':')[0] - 1) + ':' + nowTime().split(':')[1]  // 1 hour before
+                setFrom('2023-10-09')
+                setTo('2023-10-09')
                 setTimeRange(fromTime + '-' + toTime)
-                setFrom(nowDate().split('-')[0] + '-' + nowDate().split('-')[1] + '-' + nowDate().split('-')[2])
-                setTo(nowDate().split('-')[0] + '-' + nowDate().split('-')[1] + '-' + nowDate().split('-')[2])
+                // setFrom(nowDate().split('-')[0] + '-' + nowDate().split('-')[1] + '-' + nowDate().split('-')[2])
+                // setTo(nowDate().split('-')[0] + '-' + nowDate().split('-')[1] + '-' + nowDate().split('-')[2])
                 break;
 
             case '7D':

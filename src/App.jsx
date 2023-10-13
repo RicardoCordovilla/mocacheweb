@@ -41,7 +41,7 @@ function App() {
             flexDirection: 'row',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            gap: 2,
+            // gap: 2,
             alignItems: 'center',
             width: '100%',
             height: '100%',

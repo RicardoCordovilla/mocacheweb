@@ -17,7 +17,7 @@ const SensorContainer = ({ station, sensor }) => {
                 alignItems: 'center',
                 gap: 2,
                 // width: '100%',
-                // maxWidth: '500px',
+                maxWidth: '700px',
                 height: '100%',
                 m: 1,
                 bgcolor: 'background.paper',
