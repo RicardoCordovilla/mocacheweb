@@ -11,7 +11,9 @@ export const formatDate = (date) => {
 
 export const nowDate = () => {
     const currentDate = new Date()
-    const currentLocalDate = formatDate(currentDate.toLocaleDateString("es-EC", { timeZone: 'America/Lima' }, { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
+    console.log(currentDate.toLocaleDateString({ year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
+    // const currentLocalDate = formatDate(currentDate.toLocaleDateString("es-EC", { timeZone: 'America/Lima' }, { year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-'))
+    const currentLocalDate = currentDate.toLocaleDateString({ year: 'numeric', month: '2-digit', day: '2-digit' }).split('/').reverse().join('-')
     return currentLocalDate
 }
 

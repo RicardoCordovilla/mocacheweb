@@ -16,12 +16,15 @@ const ChartContainer = ({ station, sensor, setListData }) => {
     const [filteredData, setFilteredData] = useState([])
     const [timeRange, setTimeRange] = useState('00:00-23:59')
     const [tab, setTab] = useState('1D') // ['1D', '7D', '15D', '1H'
-    const [from, setFrom] = useState('2023-10-10')
-    const [to, setTo] = useState('2023-10-10')
+    const [from, setFrom] = useState(nowDate())
+    const [to, setTo] = useState(nowDate())
     const [timeOdd, setTimeOdd] = useState(1)
 
 
     const getData = async () => {
+
+        console.log(from, to)
+        
         let url = config.db.baseurl + 'registers/' + station + '/date?'
             + 'from=' + (from)
             + '&to=' + (to)
@@ -41,23 +44,19 @@ const ChartContainer = ({ station, sensor, setListData }) => {
         let fromTime
         switch (e) {
             case '1H':
-                // setFrom(nowDate())
-                // setTo(nowDate())
+                setFrom(nowDate())
+                setTo(nowDate())
                 toTime = (nowTime().split(':')[0]) + ':' + (nowTime().split(':')[1])
                 fromTime = digits(nowTime().split(':')[0] - 1) + ':' + digits(nowTime().split(':')[1])  // 1 hour before
                 console.log(fromTime, toTime)
-                setFrom('2023-10-09')
-                setTo('2023-10-09')
                 setTimeRange(fromTime + '-' + toTime)
                 break;
             case '1D':
                 toTime = '23:59'
                 fromTime = '00:00'
-                setFrom('2023-10-09')
-                setTo('2023-10-09')
                 setTimeRange(fromTime + '-' + toTime)
-                // setFrom(nowDate().split('-')[0] + '-' + nowDate().split('-')[1] + '-' + nowDate().split('-')[2])
-                // setTo(nowDate().split('-')[0] + '-' + nowDate().split('-')[1] + '-' + nowDate().split('-')[2])
+                setFrom(nowDate().split('-')[0] + '-' + nowDate().split('-')[1] + '-' + nowDate().split('-')[2])
+                setTo(nowDate().split('-')[0] + '-' + nowDate().split('-')[1] + '-' + nowDate().split('-')[2])
                 break;
 
             case '7D':
