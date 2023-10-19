@@ -5,6 +5,7 @@ import axios from 'axios'
 import { digits, formatDate, nowDate, nowTime } from '../utils/dateformat'
 import RangeSelectorTabs from './RangeSelector'
 import { Box, Card, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material'
+import DateRangePicker from './DateRangePicker'
 
 
 const ChartContainer = ({ station, sensor, setListData }) => {
@@ -21,7 +22,7 @@ const ChartContainer = ({ station, sensor, setListData }) => {
 
 
     const getData = async () => {
-        let url = config.db.baseurl + 'registers/' + 'ESP1' + '/date?'
+        let url = config.db.baseurl + 'registers/' + station + '/date?'
             + 'from=' + (from)
             + '&to=' + (to)
 
@@ -97,7 +98,7 @@ const ChartContainer = ({ station, sensor, setListData }) => {
 
     useEffect(() => {
         getData()
-    }, [from, to])
+    }, [from, to, station])
 
     useEffect(() => {
         setFilteredData(filterDataByTimeRange(data))
@@ -119,6 +120,7 @@ const ChartContainer = ({ station, sensor, setListData }) => {
                 height: '100%',
                 p: 1,
                 bgcolor: 'background.paper',
+                // bgcolor: 'primary.main',
                 // flexGrow: 1,
             }
             }
@@ -129,6 +131,31 @@ const ChartContainer = ({ station, sensor, setListData }) => {
 
                 }
             </Typography>
+            <Box sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexDirection: 'row',
+                flexWrap: 'nowrap',
+                // m: 1,
+                // p: 1,
+                bgcolor: 'background.paper',
+                width: '100%',
+                flexGrow: 1,
+            }}
+            >
+
+                <DateRangePicker    // from, to, setFrom, setTo
+                    from={from}
+                    to={to}
+                    setFrom={setFrom}
+                    setTo={setTo}
+                />
+
+
+            </Box>
+
+
             <Box sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -161,7 +188,7 @@ const ChartContainer = ({ station, sensor, setListData }) => {
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={timeOdd}
-                        label="Age"
+                        label='Rango'
                         onChange={(e) => setTimeOdd(e.target.value)}
                         fullWidth
                     >

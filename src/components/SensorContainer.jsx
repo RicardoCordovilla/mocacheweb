@@ -6,6 +6,8 @@ import CurrentValueView from './CurrentValueView'
 
 const SensorContainer = ({ station, sensor }) => {
 
+    console.log(station)
+
     const [filteredData, setFilteredData] = useState([])
 
     return (
@@ -20,7 +22,7 @@ const SensorContainer = ({ station, sensor }) => {
                 maxWidth: '700px',
                 height: '100%',
                 m: 1,
-                bgcolor: 'background.paper',
+                // bgcolor: '#f5f5f5',
                 // flexGrow: 1,
             }}
         >
