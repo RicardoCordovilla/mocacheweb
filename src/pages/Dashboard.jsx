@@ -46,6 +46,7 @@ const Dashboard = () => {
                     <MenuItem value="ESP1">ESP1</MenuItem>
                     <MenuItem value="ESP2">ESP2</MenuItem>
                     <MenuItem value="ESP3">ESP3</MenuItem>
+                    <MenuItem value="ESP4">ESP4</MenuItem>
                 </Select>
             </FormControl>
 
