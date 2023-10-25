@@ -18,10 +18,14 @@
     "@nivo/core": "^0.83.0",
     "@nivo/line": "^0.83.0",
     "axios": "^1.5.1",
+    "browserify": "^17.0.0",
+    "file-saver": "^2.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0",
-    "recharts": "^2.8.0"
+    "recharts": "^2.8.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

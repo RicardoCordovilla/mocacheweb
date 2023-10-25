@@ -4,7 +4,7 @@ import { config } from '../config'
 import axios from 'axios'
 import { digits, formatDate, nowDate, nowTime } from '../utils/dateformat'
 import RangeSelectorTabs from './RangeSelector'
-import { Box, Card, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material'
+import { Backdrop, Box, Card, CircularProgress, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material'
 import DateRangePicker from './DateRangePicker'
 
 
@@ -19,12 +19,14 @@ const ChartContainer = ({ station, sensor, setListData }) => {
     const [from, setFrom] = useState(nowDate())
     const [to, setTo] = useState(nowDate())
     const [timeOdd, setTimeOdd] = useState(1)
+    const [openBackdrop, setOpenBackdrop] = useState(false)
 
 
     const getData = async () => {
 
         console.log(from, to)
-        
+        setOpenBackdrop(true)
+
         let url = config.db.baseurl + 'registers/' + station + '/date?'
             + 'from=' + (from)
             + '&to=' + (to)
@@ -36,6 +38,7 @@ const ChartContainer = ({ station, sensor, setListData }) => {
         setData(res.data)
         setFilteredData(res.data)
         setListData(res.data)
+        setOpenBackdrop(false)
     }
 
     const handleTimeRange = (e) => {
@@ -107,6 +110,14 @@ const ChartContainer = ({ station, sensor, setListData }) => {
         setFilteredData(filterDataByTimeOdd(data))
     }, [timeOdd])
 
+    useEffect(() => {
+        setFrom(nowDate())
+        setTo(nowDate())
+        setTimeRange('00:00-23:59')
+        setTimeOdd(1)
+        getData()
+    }, [station])
+
 
     return (
         <Card Card
@@ -140,7 +151,7 @@ const ChartContainer = ({ station, sensor, setListData }) => {
                 // p: 1,
                 bgcolor: 'background.paper',
                 width: '100%',
-                flexGrow: 1,
+                // flexGrow: 1,
             }}
             >
 
@@ -206,6 +217,24 @@ const ChartContainer = ({ station, sensor, setListData }) => {
                 xaxis={"time"}
                 line_dataKey={sensor}
             />
+
+            <Backdrop
+                sx={{
+                    color: '#ffffff',
+                    zIndex: (theme) => theme.zIndex.drawer + 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    pt: 10,
+                }}
+                open={openBackdrop}
+            // onClick={() => setOpenBackdrop(false)}
+            >
+                Obteniendo datos...
+                <CircularProgress color="inherit" />
+            </Backdrop>
+
         </Card >
 
     )

@@ -9,7 +9,7 @@ const DateRangePicker = ({ from, setFrom, to, setTo }) => {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 flexDirection: 'row',
-                flexWrap: 'nowrap',
+                flexWrap: 'wrap',
                 m: 1,
                 p: 1,
                 gap: 2,
